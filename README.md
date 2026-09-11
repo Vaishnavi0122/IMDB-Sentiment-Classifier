@@ -1,47 +1,54 @@
 # 🎬 IMDB Sentiment Classifier
 
-An end-to-end Machine Learning project that classifies IMDB movie reviews as **Positive** or **Negative** using TF-IDF features and Logistic Regression.
+An end-to-end Machine Learning project that classifies IMDB movie reviews as **Positive** or **Negative** using **TF-IDF feature extraction** and **Logistic Regression**.
 
-The trained model is served through a **FastAPI REST API** and connected to a professional **Streamlit web application** called **CineSense AI**.
+The trained model is integrated into a professional Streamlit web application called **CineSense AI**, which provides instant sentiment predictions with confidence scores.
+
+## 🚀 Live Demo
+
+👉 **[Try CineSense AI](https://imdb-sentiment-classifier-nbqnngkyrgvng7dbwr8ta.streamlit.app/)**
+
+Analyze movie reviews instantly using the trained Machine Learning model.
 
 ---
 
 ## 📌 Project Overview
 
-Movie reviews contain valuable information about audience opinions. Manually analyzing thousands of reviews is difficult and time-consuming.
+Sentiment analysis is a Natural Language Processing (NLP) task used to determine the emotional tone of text.
 
-This project uses Natural Language Processing (NLP) and Machine Learning to automatically determine whether a movie review expresses a **positive** or **negative** sentiment.
+In this project, an IMDB movie review dataset containing **50,000 reviews** is used to train a binary sentiment classification model.
 
-### What the application does
+The system predicts whether a given movie review expresses:
 
-1. Accepts a movie review from the user.
-2. Converts the review into numerical TF-IDF features.
-3. Uses a trained Logistic Regression classifier.
-4. Predicts the sentiment.
-5. Returns the predicted sentiment with a confidence score.
-6. Displays the result through a professional web interface.
+- 😊 **Positive Sentiment**
+- 😞 **Negative Sentiment**
+
+The project demonstrates a complete Machine Learning workflow, from data exploration and preprocessing to model development, evaluation, API development, and deployment.
 
 ---
 
 ## 🎯 Objectives
 
-- Perform exploratory data analysis on the IMDB dataset.
-- Prepare textual data for machine learning.
-- Convert text into numerical features using TF-IDF.
-- Build a Logistic Regression sentiment classifier.
-- Establish a baseline model.
-- Improve the baseline using word bigrams.
-- Evaluate the model using standard classification metrics.
-- Perform error analysis on incorrect predictions.
-- Save the trained model as a reusable pipeline.
-- Deploy the model through FastAPI.
-- Build a user-friendly Streamlit frontend.
+- Perform Exploratory Data Analysis (EDA) on movie review data
+- Prepare text data for Machine Learning
+- Convert text into numerical features using TF-IDF
+- Build a Logistic Regression sentiment classifier
+- Establish a baseline model
+- Improve the model using unigram and bigram features
+- Evaluate model performance using multiple metrics
+- Perform error analysis
+- Save the trained Machine Learning pipeline
+- Develop a REST API using FastAPI
+- Build an interactive frontend using Streamlit
+- Deploy the application using Streamlit Community Cloud
 
 ---
 
-## 📊 Dataset
+## 🧠 Machine Learning Approach
 
-The project uses the **IMDB Movie Review Dataset** containing:
+### 1. Data
+
+The project uses the **IMDB Dataset**, containing:
 
 - **50,000 movie reviews**
 - **25,000 reviews for training**
@@ -50,27 +57,34 @@ The project uses the **IMDB Movie Review Dataset** containing:
   - Positive
   - Negative
 
-The dataset contains two columns:
-
-| Column | Description |
-|---|---|
-| `review` | Movie review text |
-| `sentiment` | Positive or Negative |
-
-> The dataset CSV is not included in this repository because it is excluded through `.gitignore`. Place `IMDB Dataset.csv` inside the `data/` directory when working locally.
+The dataset is intentionally excluded from the GitHub repository because of its size.
 
 ---
 
-## 🧠 Machine Learning Approach
+### 2. Text Preprocessing
 
-### 1. Text Representation
+The project follows a **minimal preprocessing approach** to preserve useful information from the original reviews.
 
-The reviews are converted into numerical features using:
+The TF-IDF vectorizer handles text normalization such as lowercasing.
 
-**TF-IDF (Term Frequency–Inverse Document Frequency)**
+Aggressive preprocessing techniques such as:
 
-The final model uses:
+- Stopword removal
+- Stemming
+- Lemmatization
+- Excessive punctuation removal
+
+were avoided because punctuation, word forms, and contextual words can contain useful sentiment information.
+
+---
+
+### 3. Feature Extraction
+
+**TF-IDF (Term Frequency–Inverse Document Frequency)** is used to convert movie reviews into numerical feature vectors.
+
+Two configurations were explored:
+
+#### Baseline
 
 ```text
-TF-IDF
-ngram_range = (1, 2)
+TF-IDF Unigrams
